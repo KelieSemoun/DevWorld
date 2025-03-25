@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.model;
+package com.openclassrooms.mddapi.models;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,8 +15,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "post")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
 
 	@Id
