@@ -13,6 +13,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './features/topics/components/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './features/auth/components/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 const materialModules = [
   MatButtonModule,
@@ -25,9 +27,10 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule, 
     BrowserAnimationsModule,

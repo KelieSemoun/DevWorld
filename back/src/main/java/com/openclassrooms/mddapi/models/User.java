@@ -38,4 +38,8 @@ public class User {
 		joinColumns = @JoinColumn(name = "user_id"),
 		inverseJoinColumns = @JoinColumn(name = "topic_id"))
 	private List<Topic> topics = new ArrayList<>();
+
+	public int getUserId() {
+		return userId;
+	}
 }
