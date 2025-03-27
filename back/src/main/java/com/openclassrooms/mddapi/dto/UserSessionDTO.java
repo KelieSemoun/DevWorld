@@ -7,11 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class TopicDTO {
+@NoArgsConstructor
+public class UserSessionDTO {
 	private int id;
-	private String title;
-	private String description;
-	private List<Integer> posts;
+	private String username;
+	private List<Integer> subscribedTopicIds;
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.openclassrooms.mddapi.mappers.UserSessionMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payload.request.LoginRequest;
 import com.openclassrooms.mddapi.repository.UserRepository;
@@ -22,9 +23,12 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 public class AuthController {
 
     private final UserRepository userRepository;
+    
+    private final UserSessionMapper userSessionMapper;
 
-    public AuthController(UserRepository userRepository) {
+    public AuthController(UserRepository userRepository, UserSessionMapper userSessionMapper) {
         this.userRepository = userRepository;
+        this.userSessionMapper = userSessionMapper;
     }
 
     @PostMapping("/login")
@@ -36,7 +40,7 @@ public class AuthController {
         }
 
         // No password check for now
-        session.setAttribute("userId", userOpt.get().getUserId());
-        return ResponseEntity.ok("Logged in");
+        session.setAttribute("userId", userOpt.get().getId());
+        return ResponseEntity.ok().body(this.userSessionMapper.toDto(userOpt.get()));
     }
  }

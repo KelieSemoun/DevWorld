@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { UserSession } from 'src/app/interfaces/user-session';
 
 @Injectable({
   providedIn: 'root'
@@ -8,16 +9,20 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
 
   private pathService = 'api/auth';
-  public isLoggedIn = false;
+  private sessionSubject = new BehaviorSubject<UserSession | null>(null);
+  session$ = this.sessionSubject.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
-  login(username: string): Observable<any> {
-    return this.httpClient.post(`${this.pathService}/login`, { username }, { 
-      withCredentials: true,
-      responseType: 'text' // <== tell Angular to expect plain text
+  login(username: string): Observable<UserSession> {
+    return this.httpClient.post<UserSession>(`${this.pathService}/login`, { username }, { 
+      withCredentials: true
     }).pipe(
-      tap(() => (this.isLoggedIn = true))
+      tap(user => this.sessionSubject.next(user))
     );
+  }
+
+  get currentUser(): UserSession | null {
+    return this.sessionSubject.value;
   }
 }

@@ -30,5 +30,4 @@ public class TopicController {
 		
 		return ResponseEntity.ok().body(this.topicMapper.toDto(topics));
 	}
-	
 }

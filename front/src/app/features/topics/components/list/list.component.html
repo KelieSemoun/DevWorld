@@ -11,8 +11,8 @@
             </p>
           </mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary">
-              <span class="ml1">S'abonner</span>
+            <button mat-raised-button color="primary" [disabled]="topic.isSubscribed" (click)="subscribe(topic)">
+              <span class="ml1">{{ topic.isSubscribed ? 'Déjà abonné' : "S'abonner" }}</span>
             </button>
           </mat-card-actions>
         </mat-card>

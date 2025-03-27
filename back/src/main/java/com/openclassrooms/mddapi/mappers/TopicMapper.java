@@ -17,11 +17,13 @@ import com.openclassrooms.mddapi.models.Topic;
 public abstract class TopicMapper implements EntityMapper<TopicDTO, Topic> {
 
     @Mappings({
+    	@Mapping(source = "id", target = "topicId"),
         @Mapping(target = "posts", expression = "java(mapIdsToPosts(topicDTO.getPosts()))")
     })
     public abstract Topic toEntity(TopicDTO topicDTO);
 
     @Mappings({
+    	@Mapping(source = "topicId", target = "id"),
         @Mapping(target = "posts", expression = "java(mapPostsToIds(topic.getPosts()))")
     })
     public abstract TopicDTO toDto(Topic topic);

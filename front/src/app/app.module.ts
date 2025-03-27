@@ -11,10 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { ListComponent } from './features/topics/components/list/list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './features/auth/components/login/login.component';
 import { FormsModule } from '@angular/forms';
+import { ListComponent } from './features/topics/components/list/list.component';
+import { LoginComponent } from './features/auth/components/login/login.component';
 
 const materialModules = [
   MatButtonModule,

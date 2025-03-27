@@ -21,7 +21,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int userId;
+	private int id;
 	
 	@Column(name = "username")
 	private String username;
@@ -39,7 +39,11 @@ public class User {
 		inverseJoinColumns = @JoinColumn(name = "topic_id"))
 	private List<Topic> topics = new ArrayList<>();
 
-	public int getUserId() {
-		return userId;
+	public int getId() {
+		return id;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 }
