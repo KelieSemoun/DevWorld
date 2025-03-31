@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -34,7 +33,7 @@ public class Post {
 	@Column(name = "title")
 	private String title;
 	
-	@OneToOne()
+	@ManyToOne()
 	@JoinColumn(name = "user_id")
 	private User author;
 	

@@ -17,7 +17,7 @@ import com.openclassrooms.mddapi.models.User;
 public abstract class UserSessionMapper implements EntityMapper<UserSessionDTO, User>{
 	
 	@Mappings({
-        @Mapping(target = "topics", expression = "java(mapIdsToTopics(userSessionDTO.getTopics()))")
+        @Mapping(target = "topics", expression = "java(mapIdsToTopics(userSessionDTO.getSubscribedTopicIds()))")
     })
     public abstract User toEntity(UserSessionDTO userSessionDTO);
 
