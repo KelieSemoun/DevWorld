@@ -16,6 +16,10 @@ import { FormsModule } from '@angular/forms';
 import { ListComponent } from './features/topics/components/list/list.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AppHeaderComponent } from './core/compnents/app-header/app-header.component';
+import { RegisterComponent } from './features/auth/components/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 const materialModules = [
   MatButtonModule,
@@ -28,16 +32,21 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule, 
+    HttpClientModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ...materialModules
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
