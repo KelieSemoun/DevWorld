@@ -18,11 +18,26 @@ export class AuthService {
     return this.httpClient.post<UserSession>(`${this.pathService}/login`, { username }, { 
       withCredentials: true
     }).pipe(
-      tap(user => this.sessionSubject.next(user))
+      tap(user => {
+        this.sessionSubject.next(user);
+        localStorage.setItem('userSession', JSON.stringify(user));
+      })
     );
+  }
+
+  logout(): void{
+    this.sessionSubject.next(null);
+    localStorage.removeItem('userSession');
   }
 
   get currentUser(): UserSession | null {
     return this.sessionSubject.value;
+  }
+
+  restoreSession(): void {
+    const sessionJson = localStorage.getItem('userSession');
+    if (sessionJson) {
+      this.sessionSubject.next(JSON.parse(sessionJson));
+    }
   }
 }

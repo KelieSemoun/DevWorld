@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.openclassrooms.mddapi.mappers.UserSessionMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payload.request.LoginRequest;
 import com.openclassrooms.mddapi.payload.request.SignupRequest;
@@ -32,15 +33,18 @@ public class AuthController {
     private final JwtUtils jwtUtils;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;  
+    private final UserSessionMapper userSessionMapper;
 
     public AuthController(AuthenticationManager authenticationManager,
     					  PasswordEncoder passwordEncoder,
     					  JwtUtils jwtUtils,
-    					  UserRepository userRepository) {
+    					  UserRepository userRepository,
+    					  UserSessionMapper userSessionMapper) {
     	this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
+        this.userSessionMapper = userSessionMapper;
     }
 
     @PostMapping("/login")
@@ -59,10 +63,7 @@ public class AuthController {
         }
         User user = userOpt.get();
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-        						 user.getId(),
-        						 user.getUsername(),
-        						 user.getEmail()));
+        return ResponseEntity.ok(new JwtResponse(jwt, userSessionMapper.toDto(user)));
     }
     
     @PostMapping("/register")

@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.payload.response;
 
+import com.openclassrooms.mddapi.dto.UserSessionDTO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,14 +10,10 @@ import lombok.Setter;
 public class JwtResponse {
 	  private String token;
 	  private String type = "Bearer";
-	  private int id;
-	  private String username;
-	  private String email;
+	  private UserSessionDTO user;
 	
-	  public JwtResponse(String accessToken, int id, String username,String email) {
+	  public JwtResponse(String accessToken, UserSessionDTO user) {
 		  this.token = accessToken;
-		  this.id = id;
-		  this.email = email;
-		  this.username = username;
+		  this.user = user;
 	  }
 }

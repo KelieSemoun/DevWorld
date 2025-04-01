@@ -1,5 +1,10 @@
 export interface UserSession {
-    id: number;
-    username: string;
-    subscribedTopicIds: number[];
+    token: string;
+    type: string;
+    user: {
+      id: number;
+      username: string;
+      email: string;
+      subscribedTopicIds: number[];
+    };
 }

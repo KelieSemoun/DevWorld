@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ListComponent } from './features/topics/components/list/list.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
+import { AppHeaderComponent } from './core/compnents/app-header/app-header.component';
 
 const materialModules = [
   MatButtonModule,
@@ -27,7 +28,7 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent],
   imports: [
     BrowserModule,
     FormsModule,
