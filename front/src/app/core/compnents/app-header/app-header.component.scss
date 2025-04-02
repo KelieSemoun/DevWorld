@@ -1,0 +1,25 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+  
+    .logo {
+      height: 48px;
+      cursor: pointer;
+    }
+  
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+  
+      a, button {
+        text-transform: none;
+        font-weight: 500;
+      }
+    }
+  }
+  
