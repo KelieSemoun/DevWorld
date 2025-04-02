@@ -30,12 +30,15 @@ export class ListComponent{
               { }
 
   subscribe(topic: Topic) {
-    const userId = this.authService.currentUser?.user.id;
-    if (!userId || !topic.id) return;
+    this.authService.getProfile().subscribe(profile => {
+      const userId = profile.id;
 
-    this.userService.subscribe(userId, topic.id).subscribe({
-      next: () => topic.isSubscribed = true,
-      error: err => console.error('Subscription failed', err)
+      this.userService.subscribe(userId, topic.id!).subscribe({
+        next: () => topic.isSubscribed = true,
+        error: err => console.error('Subscription failed', err)
+      });
     });
+
+    
   }
 }

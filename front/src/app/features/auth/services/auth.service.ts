@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserSession } from 'src/app/interfaces/user-session';
 import { LoginRequest } from '../interfaces/LoginRequest.interface';
 import { RegisterRequest } from '../interfaces/RegisterRequest.interface';
+import { UpdateUserRequest } from '../interfaces/UpdateUserRequest.interface';
+import { UserProfile } from '../interfaces/UserProfile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,15 +32,23 @@ export class AuthService {
     return this.httpClient.post<void>(`${this.pathService}/register`, registerRequest);
   }
 
+  getProfile(): Observable<UserProfile> {
+    return this.httpClient.get<UserProfile>(`${this.pathService}/me`);
+  }  
+
+  updateProfile(data: UpdateUserRequest): Observable<UserSession> {
+    return this.httpClient.put<UserSession>(`${this.pathService}/me`, data).pipe(
+      tap(user => {
+        this.sessionSubject.next(user);
+        localStorage.setItem('userSession', JSON.stringify(user));
+      })
+    );
+  }  
 
   logout(): void{
     this.sessionSubject.next(null);
     localStorage.removeItem('userToken');
     localStorage.removeItem('userSession');
-  }
-
-  get currentUser(): UserSession | null {
-    return this.sessionSubject.value;
   }
 
   restoreSession(): void {

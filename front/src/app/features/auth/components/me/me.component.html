@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>Profil utilisateur</h2>
+  
+    <form [formGroup]="profileForm" (ngSubmit)="saveChanges()">
+      <mat-form-field appearance="fill">
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+      </mat-form-field>
+  
+      <mat-checkbox color=primary [checked]="true" (change)="onKeepPasswordToggle()">
+        Conserver le même mot de passe
+      </mat-checkbox>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Nouveau mot de passe</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="Nouveau mot de passe" [disabled]="keepPassword" />
+      </mat-form-field>      
+  
+      <app-password-checklist [password]="profileForm.get('password')?.value"></app-password-checklist>
+  
+      <button mat-raised-button color="primary" type="submit">
+        Sauvegarder
+      </button>
+    </form>
+  
+    <hr />
+  
+    <h3>Abonnements</h3>
+  
+    <div class="topics">
+      <div class="topic-card" *ngFor="let topic of subscribedTopics">
+        <h4>{{ topic.title }}</h4>
+        <p>{{ topic.description }}</p>
+        <button mat-button color="accent" (click)="unsubscribe(topic.id!)">
+          Se désabonner
+        </button>
+      </div>
+    </div>
+  </div>
+  

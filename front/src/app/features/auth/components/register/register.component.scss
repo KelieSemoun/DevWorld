@@ -26,26 +26,3 @@
       margin-top: 1rem;
     }
 }
-
-.password-checklist {
-    list-style: none;
-    padding: 0;
-    font-size: 0.9rem;
-  
-    li {
-      color: #999;
-      transition: color 0.3s ease;
-      &.valid {
-        color: green;
-        font-weight: bold;
-      }
-    }
-}
-
-.password-hint {
-    font-weight: 500;
-    margin-top: 10px;
-    margin-bottom: 5px;
-}
-  
-  

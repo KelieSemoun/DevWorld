@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -20,10 +21,13 @@ import { RegisterComponent } from './features/auth/components/register/register.
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MeComponent } from './features/auth/components/me/me.component';
+import { SharedModule } from './shared/shared.module';
 
 const materialModules = [
   MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -32,7 +36,7 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -40,6 +44,7 @@ const materialModules = [
     HttpClientModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    SharedModule,
     ...materialModules
   ],
   providers: [{

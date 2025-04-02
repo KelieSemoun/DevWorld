@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { passwordValidator } from 'src/app/shared/validators/password.validator';
 
 interface RegisterRequest {
   username: string;
@@ -33,7 +34,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, this.passwordValidator]],
+      password: ['', [Validators.required, passwordValidator]],
     });
   }
 
@@ -46,28 +47,6 @@ export class RegisterComponent {
       next: () => this.router.navigate(['/login']),
       error: () => (this.error = 'Registration failed. Please try again.'),
     });
-  }
-
-  passwordValidator(control: AbstractControl): ValidationErrors | null {
-    const value: string = control.value || '';
-  
-    const isValid =
-      value.length >= 8 &&
-      /[0-9]/.test(value) &&            // chiffre
-      /[a-z]/.test(value) &&            // minuscule
-      /[A-Z]/.test(value) &&            // majuscule
-      /[!@#$%^&*(),.?":{}|<>]/.test(value); // spécial
-  
-    return isValid ? null : { invalidPassword: true };
-  }
-
-  onPasswordInput(): void {
-    const value = this.registerForm.get('password')?.value || '';
-    this.passwordRequirements.minLength = value.length >= 8;
-    this.passwordRequirements.hasDigit = /[0-9]/.test(value);
-    this.passwordRequirements.hasLowercase = /[a-z]/.test(value);
-    this.passwordRequirements.hasUppercase = /[A-Z]/.test(value);
-    this.passwordRequirements.hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(value);
   }
 
   goBack(): void {

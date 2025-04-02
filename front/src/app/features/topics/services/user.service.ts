@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Topic } from '../interfaces/topic.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,4 +17,13 @@ export class UserService {
       withCredentials: true
     });
   }
+
+  getSubscribedTopics(userId: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`/api/user/${userId}/topics`);
+  }
+  
+  unsubscribe(userId: number, topicId: number): Observable<void> {
+    return this.http.post<void>(`/api/user/${userId}/unsubscribe/${topicId}`, {});
+  }
+  
 }

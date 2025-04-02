@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserSession } from 'src/app/interfaces/user-session';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +17,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.loginForm = this.fb.group({
       identifier: ['', Validators.required],
@@ -29,10 +30,11 @@ export class LoginComponent {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe({
       next: (response: UserSession) => {
-        this.router.navigate(['/topics']);
         localStorage.setItem('userToken', response.token);
+        const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
+        this.router.navigateByUrl(redirectTo || '/topics');
       },
-      error: () => this.error = 'Login failed. Try again.'
+      error: () => this.error = 'Identifiants incorrects'
     });
   }
 

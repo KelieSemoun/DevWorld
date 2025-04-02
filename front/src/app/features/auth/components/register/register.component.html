@@ -19,18 +19,10 @@
   
       <mat-form-field appearance="fill">
         <mat-label>Mot de passe</mat-label>
-        <input matInput type="password" formControlName="password" (input)="onPasswordInput()" />
+        <input matInput type="password" formControlName="password"/>
       </mat-form-field>
 
-      <p class="password-hint">Le mot de passe doit contenir :</p>
-
-      <ul class="password-checklist">
-        <li [class.valid]="passwordRequirements.minLength">➤ Au moins 8 caractères</li>
-        <li [class.valid]="passwordRequirements.hasDigit">➤ Un chiffre</li>
-        <li [class.valid]="passwordRequirements.hasLowercase">➤ Une lettre minuscule</li>
-        <li [class.valid]="passwordRequirements.hasUppercase">➤ Une lettre majuscule</li>
-        <li [class.valid]="passwordRequirements.hasSpecialChar">➤ Un caractère spécial</li>
-      </ul>
+      <app-password-checklist [password]="registerForm.get('password')?.value"></app-password-checklist>
   
       <button mat-raised-button color="primary" type="submit">S'inscrire</button>
     </form>
