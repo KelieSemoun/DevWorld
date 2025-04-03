@@ -36,7 +36,7 @@
       <div class="topic-card" *ngFor="let topic of subscribedTopics">
         <h4>{{ topic.title }}</h4>
         <p>{{ topic.description }}</p>
-        <button mat-button color="accent" (click)="unsubscribe(topic.id!)">
+        <button mat-button color="primary" (click)="unsubscribe(topic.id!)">
           Se désabonner
         </button>
       </div>
