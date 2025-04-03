@@ -56,13 +56,19 @@ export class MeComponent implements OnInit {
 
   saveChanges(): void {
     if (this.profileForm.invalid) return;
-
+  
     const updateProfileRequest = this.profileForm.value as UpdateUserRequest;
-
-    this.authService.updateProfile(updateProfileRequest).subscribe(() => {
-      alert('Informations mises à jour !');
+  
+    this.authService.updateProfile(updateProfileRequest).subscribe({
+      next: (res) => {
+        alert(res.message);
+      },
+      error: (err) => {
+        alert(err.error?.message || 'An error occurred while updating your profile.');
+      }
     });
   }
+  
 
   unsubscribe(topicId: number): void {
     this.userService.unsubscribeToTopic(this.userId, topicId).subscribe(() => {

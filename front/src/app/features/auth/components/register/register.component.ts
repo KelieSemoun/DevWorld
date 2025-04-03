@@ -40,14 +40,20 @@ export class RegisterComponent {
 
   register(): void {
     if (this.registerForm.invalid) return;
-
+  
     const request = this.registerForm.value as RegisterRequest;
-
+  
     this.authService.register(request).subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: () => (this.error = 'Registration failed. Please try again.'),
+      next: (res) => {
+        alert(res.message);
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.error = err.error?.message || 'Registration failed. Please try again.';
+      },
     });
   }
+  
 
   goBack(): void {
     this.router.navigate(['/']);

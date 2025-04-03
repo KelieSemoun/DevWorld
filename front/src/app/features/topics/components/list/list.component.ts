@@ -13,7 +13,6 @@ import { AuthService } from 'src/app/features/auth/services/auth.service';
 export class ListComponent implements OnInit {
   public topics$: Observable<Topic[]> = of([]);
   private userId!: number;
-  private subscribedTopicIds: number[] = [];
 
   constructor(
     private topicApiService: TopicApiService,
@@ -39,8 +38,7 @@ export class ListComponent implements OnInit {
         )
       );
     });
-  }
-  
+  }  
 
   subscribeToTopic(topic: Topic): void {
     this.userService.subscribeToTopic(this.userId, topic.id!).subscribe({
