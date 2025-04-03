@@ -24,18 +24,21 @@ export class MeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getProfile().subscribe(profile => {
-      this.userId = profile.id;
+    const session = this.authService.currentUser();
+    if (!session) return;
   
-      this.profileForm = this.fb.group({
-        username: [profile.username, Validators.required],
-        email: [profile.email, [Validators.required, Validators.email]],
-        password: [{value: '', disabled: this.keepPassword}, passwordValidator]
-      });
+    const { id, username, email } = session.user;
   
-      this.userService.getSubscribedTopics(this.userId).subscribe(topics => {
-        this.subscribedTopics = topics;
-      });
+    this.userId = id;
+  
+    this.profileForm = this.fb.group({
+      username: [username, Validators.required],
+      email: [email, [Validators.required, Validators.email]],
+      password: [{ value: '', disabled: this.keepPassword }, passwordValidator]
+    });
+  
+    this.userService.getSubscribedTopics(id).subscribe(topics => {
+      this.subscribedTopics = topics;
     });
   }
   
@@ -62,7 +65,7 @@ export class MeComponent implements OnInit {
   }
 
   unsubscribe(topicId: number): void {
-    this.userService.unsubscribe(this.userId, topicId).subscribe(() => {
+    this.userService.unsubscribeToTopic(this.userId, topicId).subscribe(() => {
       this.subscribedTopics = this.subscribedTopics.filter(t => t.id !== topicId);
     });
   }

@@ -29,8 +29,7 @@ export class LoginComponent {
   login(): void {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe({
-      next: (response: UserSession) => {
-        localStorage.setItem('userToken', response.token);
+      next: () => {
         const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
         this.router.navigateByUrl(redirectTo || '/topics');
       },

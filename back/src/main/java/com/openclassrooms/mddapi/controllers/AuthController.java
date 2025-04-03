@@ -81,6 +81,11 @@ public class AuthController {
                     .badRequest()
                     .body(new MessageResponse("Error: Email is already taken!"));
         }
+        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        	return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
 
         // Create new user's account
         User user = new User();
@@ -102,13 +107,23 @@ public class AuthController {
 
 
     @PutMapping("/me")
-    public ResponseEntity<Void> updateCurrentUser(
+    public ResponseEntity<?> updateCurrentUser(
         @AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestBody UpdateUserRequest updateRequest
     ) {
         Optional<User> userOpt = userRepository.findByUsername(userDetails.getUsername());
         if (userOpt.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        if (userRepository.existsByEmail(updateRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already taken!"));
+        }
+        if (userRepository.existsByUsername(updateRequest.getUsername())) {
+        	return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
         }
 
         User user = userOpt.get();

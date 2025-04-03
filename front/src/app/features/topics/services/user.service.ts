@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  subscribe(userId: number, topicId: number): Observable<void> {
+  subscribeToTopic(userId: number, topicId: number): Observable<void> {
     console.log(`${this.baseUrl}/${userId}/subscribe/${topicId}`);
     return this.http.post<void>(`${this.baseUrl}/${userId}/subscribe/${topicId}`, {}, {
       withCredentials: true
@@ -22,7 +22,7 @@ export class UserService {
     return this.http.get<Topic[]>(`/api/user/${userId}/topics`);
   }
   
-  unsubscribe(userId: number, topicId: number): Observable<void> {
+  unsubscribeToTopic(userId: number, topicId: number): Observable<void> {
     return this.http.post<void>(`/api/user/${userId}/unsubscribe/${topicId}`, {});
   }
   
