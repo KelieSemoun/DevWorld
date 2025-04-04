@@ -28,8 +28,8 @@ export class AuthService {
     return this.httpClient.post<{ message: string }>(`${this.pathService}/register`, registerRequest);
   }
 
-  updateProfile(data: UpdateUserRequest): Observable<{ message: string }> {
-    return this.httpClient.put<{ message: string }>(`${this.pathService}/me`, data).pipe(
+  updateProfile(data: UpdateUserRequest): Observable<UserSession> {
+    return this.httpClient.put<UserSession>(`${this.pathService}/me`, data).pipe(
       tap(user => {
         localStorage.setItem('userSession', JSON.stringify(user));
       })

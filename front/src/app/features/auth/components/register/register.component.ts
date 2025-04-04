@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { passwordValidator } from 'src/app/shared/validators/password.validator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface RegisterRequest {
   username: string;
@@ -29,7 +30,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,7 +47,10 @@ export class RegisterComponent {
   
     this.authService.register(request).subscribe({
       next: (res) => {
-        alert(res.message);
+        this.snackBar.open(res.message, 'Fermer', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
         this.router.navigate(['/login']);
       },
       error: (err) => {
@@ -53,7 +58,6 @@ export class RegisterComponent {
       },
     });
   }
-  
 
   goBack(): void {
     this.router.navigate(['/']);

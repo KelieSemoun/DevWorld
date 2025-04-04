@@ -9,8 +9,8 @@
   
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
-      </mat-form-field>
+        <input matInput type="email" formControlName="email" />
+      </mat-form-field>      
   
       <mat-checkbox color=primary [checked]="true" (change)="onKeepPasswordToggle()">
         Conserver le même mot de passe

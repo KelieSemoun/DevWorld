@@ -11,7 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.openclassrooms.mddapi.dto.UserProfileDTO;
+import com.openclassrooms.mddapi.dto.UserSessionDTO;
 import com.openclassrooms.mddapi.mappers.UserSessionMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.payload.request.LoginRequest;
@@ -76,10 +76,6 @@ public class AuthService {
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 
-    public UserProfileDTO getProfile(UserDetailsImpl userDetails) {
-        return new UserProfileDTO(userDetails.getId(), userDetails.getUsername(), userDetails.getEmail());
-    }
-
     public ResponseEntity<?> updateProfile(UserDetailsImpl userDetails, UpdateUserRequest request) {
         Optional<User> userOpt = userRepository.findByUsername(userDetails.getUsername());
         if (userOpt.isEmpty()) {
@@ -107,6 +103,9 @@ public class AuthService {
         }
 
         userRepository.save(user);
-        return ResponseEntity.ok(new MessageResponse("User updated successfully!"));
+        UserSessionDTO session = userSessionMapper.toDto(user);
+        String jwt = jwtUtils.generateJwtTokenFromEmail(user.getEmail());
+        return ResponseEntity.ok(new JwtResponse(jwt, session));
+
     }
 }

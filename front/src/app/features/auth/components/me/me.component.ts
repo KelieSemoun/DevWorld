@@ -5,6 +5,7 @@ import { UserService } from 'src/app/features/topics/services/user.service';
 import { passwordValidator } from 'src/app/shared/validators/password.validator';
 import { Topic } from 'src/app/features/topics/interfaces/topic.interface';
 import { UpdateUserRequest } from '../../interfaces/UpdateUserRequest.interface';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-me',
@@ -20,24 +21,24 @@ export class MeComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    const session = this.authService.currentUser();
-    if (!session) return;
+    const userSession = this.authService.currentUser();
+    if (!userSession) return;
   
-    const { id, username, email } = session.user;
-  
-    this.userId = id;
-  
+    const user = userSession.user;
+
+    this.userId = user.id;
     this.profileForm = this.fb.group({
-      username: [username, Validators.required],
-      email: [email, [Validators.required, Validators.email]],
-      password: [{ value: '', disabled: this.keepPassword }, passwordValidator]
+      username: [user.username, Validators.required],
+      email: [user.email, [Validators.required, Validators.email]],
+      password: [{value: '', disabled: this.keepPassword}, passwordValidator],
     });
   
-    this.userService.getSubscribedTopics(id).subscribe(topics => {
+    this.userService.getSubscribedTopics(this.userId).subscribe(topics => {
       this.subscribedTopics = topics;
     });
   }
@@ -57,14 +58,27 @@ export class MeComponent implements OnInit {
   saveChanges(): void {
     if (this.profileForm.invalid) return;
   
-    const updateProfileRequest = this.profileForm.value as UpdateUserRequest;
+    const formValue = this.profileForm.value;
+
+    const updateProfileRequest: UpdateUserRequest = {
+      username: formValue.username,
+      email: formValue.email,
+      password: this.keepPassword ? '' : formValue.password
+    };
   
     this.authService.updateProfile(updateProfileRequest).subscribe({
-      next: (res) => {
-        alert(res.message);
+      next: () => {
+        this.snackBar.open('Informations mises à jour !', 'Fermer', {
+          duration: 3000,
+          panelClass: ['snackbar-success']
+        });
+        
       },
       error: (err) => {
-        alert(err.error?.message || 'An error occurred while updating your profile.');
+        this.snackBar.open(err.error?.message || 'Erreur inattendue', 'Fermer', {
+          duration: 3000,
+          panelClass: ['snackbar-error']
+        });
       }
     });
   }
