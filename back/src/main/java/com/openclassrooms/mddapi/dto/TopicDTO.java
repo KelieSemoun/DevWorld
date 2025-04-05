@@ -13,5 +13,5 @@ public class TopicDTO {
 	private int id;
 	private String title;
 	private String description;
-	private List<Integer> posts;
+	private List<Integer> articles;
 }

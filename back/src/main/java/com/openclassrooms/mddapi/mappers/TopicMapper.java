@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
 import com.openclassrooms.mddapi.dto.TopicDTO;
-import com.openclassrooms.mddapi.models.Post;
+import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Topic;
 
 @Mapper(componentModel = "spring")
@@ -18,30 +18,30 @@ public abstract class TopicMapper implements EntityMapper<TopicDTO, Topic> {
 
     @Mappings({
     	@Mapping(source = "id", target = "topicId"),
-        @Mapping(target = "posts", expression = "java(mapIdsToPosts(topicDTO.getPosts()))")
+        @Mapping(target = "articles", expression = "java(mapIdsToArticles(topicDTO.getArticles()))")
     })
     public abstract Topic toEntity(TopicDTO topicDTO);
 
     @Mappings({
     	@Mapping(source = "topicId", target = "id"),
-        @Mapping(target = "posts", expression = "java(mapPostsToIds(topic.getPosts()))")
+        @Mapping(target = "articles", expression = "java(mapArticlesToIds(topic.getArticles()))")
     })
     public abstract TopicDTO toDto(Topic topic);
 
-    public List<Integer> mapPostsToIds(List<Post> posts) {
+    public List<Integer> mapArticlesToIds(List<Article> posts) {
         return Optional.ofNullable(posts)
                 .orElseGet(Collections::emptyList)
                 .stream()
-                .map(Post::getPostId)
+                .map(Article::getPostId)
                 .collect(Collectors.toList());
     }
 
-    public List<Post> mapIdsToPosts(List<Integer> ids) {
+    public List<Article> mapIdsToArticles(List<Integer> ids) {
         return Optional.ofNullable(ids)
                 .orElseGet(Collections::emptyList)
                 .stream()
                 .map(id -> {
-                    Post post = new Post();
+                    Article post = new Article();
                     post.setPostId(id);
                     return post;
                 })

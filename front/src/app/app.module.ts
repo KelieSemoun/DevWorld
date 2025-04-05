@@ -23,6 +23,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MeComponent } from './features/auth/components/me/me.component';
 import { SharedModule } from './shared/shared.module';
+import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
 
 const materialModules = [
   MatButtonModule,
@@ -36,7 +37,7 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent],
   imports: [
     BrowserModule,
     FormsModule,

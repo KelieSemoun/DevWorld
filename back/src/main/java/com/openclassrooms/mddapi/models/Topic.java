@@ -34,5 +34,5 @@ public class Topic {
 	private String description;
 	
 	@OneToMany(mappedBy = "topic")
-	private List<Post> posts = new ArrayList<>();
+	private List<Article> articles = new ArrayList<>();
 }

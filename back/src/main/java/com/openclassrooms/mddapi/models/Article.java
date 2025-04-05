@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class Article {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
