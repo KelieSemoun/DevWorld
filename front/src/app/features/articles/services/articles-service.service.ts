@@ -30,4 +30,12 @@ export class ArticlesService {
   getComments(articleId: number): Observable<ArticleComment[]> {
     return this.http.get<ArticleComment[]>(`${this.pathService}/${articleId}/comments`);
   }
+
+  postComment(articleId: number, content: string): Observable<any> {
+    return this.http.post('/api/comments', {
+      articleId,
+      content
+    });
+  }
+  
 }

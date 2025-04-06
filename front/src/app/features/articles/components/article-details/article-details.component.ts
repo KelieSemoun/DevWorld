@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticlesService } from '../../services/articles-service.service';
 import { ArticleDetails } from '../../interfaces/ArticleDetails.interface';
 import { ArticleComment } from '../../interfaces/ArticleComment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-article-details',
@@ -11,7 +12,7 @@ import { ArticleComment } from '../../interfaces/ArticleComment';
   styleUrls: ['./article-details.component.scss']
 })
 export class ArticleDetailsComponent implements OnInit {
-  article?: ArticleDetails; // create ArticleDetails interface if needed
+  article?: ArticleDetails;
   commentForm!: FormGroup;
   comments: ArticleComment[] = [];
 
@@ -19,7 +20,8 @@ export class ArticleDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private articlesService: ArticlesService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -43,11 +45,21 @@ export class ArticleDetailsComponent implements OnInit {
   }
 
   sendComment(): void {
-    if (this.commentForm.valid) {
-      const content = this.commentForm.value.content;
-      // Implement post comment later
-      console.log('Posting comment:', content);
-      this.commentForm.reset();
-    }
+    if (this.commentForm.invalid || !this.article) return;
+  
+    const content = this.commentForm.value.content;
+  
+    this.articlesService.postComment(this.article.id, content).subscribe({
+      next: () => {
+        this.commentForm.reset();
+        this.articlesService.getComments(this.article!.id).subscribe(comments => {
+          this.comments = comments;
+        });
+      },
+      error: () => {
+        this.snackBar.open("Échec de la création du commentaire", 'Fermer', { duration: 3000 });
+      }
+    });
   }
+  
 }
