@@ -1,0 +1,34 @@
+.article-container {
+    padding: 24px;
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  .meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    color: gray;
+  }
+  
+  .content {
+    margin-bottom: 24px;
+  }
+  
+  .comment {
+    margin-top: 12px;
+  
+    .bubble {
+      background: #f3f3f3;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 4px;
+    }
+  }
+  
+  .comment-input {
+    width: 100%;
+    margin-top: 12px;
+  }
+  

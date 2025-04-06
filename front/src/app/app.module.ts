@@ -26,6 +26,7 @@ import { MeComponent } from './features/auth/components/me/me.component';
 import { SharedModule } from './shared/shared.module';
 import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
 import { FeedComponent } from './features/articles/components/feed/feed.component';
+import { ArticleDetailsComponent } from './features/articles/components/article-details/article-details.component';
 
 const materialModules = [
   MatButtonModule,
@@ -40,7 +41,7 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent, ArticleDetailsComponent],
   imports: [
     BrowserModule,
     FormsModule,

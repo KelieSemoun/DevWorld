@@ -1,0 +1,42 @@
+<div class="article-container">
+    <button mat-icon-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+  
+    <h2>{{ article?.title }}</h2>
+  
+    <div class="meta">
+      <span>{{ article?.createdAt | date:'mediumDate' }}</span>
+      <span>{{ article?.author }}</span>
+      <span>{{ article?.topic }}</span>
+    </div>
+  
+    <p class="content">{{ article?.content }}</p>
+  
+    <hr />
+  
+    <h3>Commentaires</h3>
+    <div *ngIf="comments.length > 0; else noComments">
+      <div *ngFor="let comment of comments" class="comment">
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.content }}</p>
+        <small>{{ comment.createdAt | date: 'short' }}</small>
+      </div>
+    </div>
+    
+    <ng-template #noComments>
+      <p>Aucun commentaire pour cet article.</p>
+    </ng-template>
+
+      
+  
+    <form (ngSubmit)="sendComment()" [formGroup]="commentForm">
+      <mat-form-field appearance="outline" class="comment-input">
+        <textarea matInput placeholder="Écrivez ici votre commentaire" formControlName="content"></textarea>
+      </mat-form-field>
+      <button mat-icon-button type="submit" [disabled]="commentForm.invalid">
+        <mat-icon>send</mat-icon>
+      </button>
+    </form>
+  </div>
+  

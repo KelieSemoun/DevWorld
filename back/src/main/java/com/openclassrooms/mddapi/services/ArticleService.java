@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.openclassrooms.mddapi.dto.ArticleDetailsDTO;
 import com.openclassrooms.mddapi.dto.ArticleFeedDTO;
 import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.models.Article;
@@ -70,5 +71,18 @@ public class ArticleService {
         if (content.length() <= maxLength) return content;
         return content.substring(0, maxLength).trim() + "...";
     }
+
+    public Optional<ArticleDetailsDTO> getArticleDetails(int id) {
+        return articleRepository.findById(id)
+            .map(article -> new ArticleDetailsDTO(
+                article.getId(),
+                article.getTitle(),
+                article.getContent(),
+                article.getDate(),
+                article.getAuthor().getUsername(),
+                article.getTopic().getTitle()
+            ));
+    }
+
 
 }

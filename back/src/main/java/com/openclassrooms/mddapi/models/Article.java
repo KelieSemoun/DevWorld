@@ -19,7 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "post")
+@Table(name = "article")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,7 +27,7 @@ public class Article {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "post_id")
+	@Column(name = "article_id")
 	private int id;
 	
 	@Column(name = "title")
@@ -47,6 +47,6 @@ public class Article {
 	@Column(columnDefinition = "TEXT", name = "content")
 	private String content;
 	
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "article")
 	private List<Comment> comments = new ArrayList<>();
 }
