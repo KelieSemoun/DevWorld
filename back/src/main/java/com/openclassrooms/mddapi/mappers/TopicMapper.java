@@ -32,7 +32,7 @@ public abstract class TopicMapper implements EntityMapper<TopicDTO, Topic> {
         return Optional.ofNullable(posts)
                 .orElseGet(Collections::emptyList)
                 .stream()
-                .map(Article::getPostId)
+                .map(Article::getId)
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +42,7 @@ public abstract class TopicMapper implements EntityMapper<TopicDTO, Topic> {
                 .stream()
                 .map(id -> {
                     Article post = new Article();
-                    post.setPostId(id);
+                    post.setId(id);
                     return post;
                 })
                 .collect(Collectors.toList());

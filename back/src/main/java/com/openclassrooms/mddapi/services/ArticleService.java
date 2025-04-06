@@ -1,9 +1,14 @@
 package com.openclassrooms.mddapi.services;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.openclassrooms.mddapi.dto.ArticleFeedDTO;
+import com.openclassrooms.mddapi.exception.NotFoundException;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Topic;
 import com.openclassrooms.mddapi.models.User;
@@ -40,4 +45,30 @@ public class ArticleService {
 
         return articleRepository.save(article);
     }
+    
+    public List<ArticleFeedDTO> getFeed(String username) {
+    	Optional<User> userOpt = userRepository.findByUsername(username);
+        if (userOpt.isEmpty()) {
+            throw new NotFoundException();
+        }
+        
+        User user = userOpt.get();
+        List<Topic> subscribedTopics = user.getTopics();
+        return articleRepository.findByTopicInOrderByDateDesc(subscribedTopics).stream()
+            .map(article -> new ArticleFeedDTO(
+                article.getId(),
+                article.getTitle(),
+                generatePreview(article.getContent()),
+                article.getDate(),
+                article.getAuthor().getUsername()
+            ))
+            .collect(Collectors.toList());
+    }
+
+    private String generatePreview(String content) {
+        int maxLength = 120;
+        if (content.length() <= maxLength) return content;
+        return content.substring(0, maxLength).trim() + "...";
+    }
+
 }

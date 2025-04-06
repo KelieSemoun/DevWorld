@@ -28,7 +28,7 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "post_id")
-	private int postId;
+	private int id;
 	
 	@Column(name = "title")
 	private String title;

@@ -5,6 +5,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -24,6 +25,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MeComponent } from './features/auth/components/me/me.component';
 import { SharedModule } from './shared/shared.module';
 import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
+import { FeedComponent } from './features/articles/components/feed/feed.component';
 
 const materialModules = [
   MatButtonModule,
@@ -32,12 +34,13 @@ const materialModules = [
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatListModule,
   MatSnackBarModule,
   MatSelectModule
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent],
   imports: [
     BrowserModule,
     FormsModule,

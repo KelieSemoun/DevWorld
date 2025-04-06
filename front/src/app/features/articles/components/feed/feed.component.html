@@ -1,0 +1,16 @@
+<div class="feed-header">
+    <button mat-raised-button color="primary" (click)="createArticle()">Créer un article</button>
+    <div class="sort-placeholder">Trier par ⬇️</div>
+  </div>
+  
+  <div class="feed-grid">
+    <div *ngFor="let article of articles" class="article-card" (click)="goToArticle(article.id)">
+      <h3>{{ article.title }}</h3>
+      <div class="meta">
+        <span>{{ article.createdAt | date: 'mediumDate' }}</span>
+        <span>{{ article.author }}</span>
+      </div>
+      <p>{{ article.contentPreview }}</p>
+    </div>
+  </div>
+  
