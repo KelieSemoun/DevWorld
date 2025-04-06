@@ -30,8 +30,7 @@ export class LoginComponent {
     const loginRequest = this.loginForm.value as LoginRequest;
     this.authService.login(loginRequest).subscribe({
       next: () => {
-        const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
-        this.router.navigateByUrl(redirectTo || '/topics');
+        this.router.navigateByUrl('/articles');
       },
       error: () => this.error = 'Identifiants incorrects'
     });

@@ -44,7 +44,7 @@ public class Article {
 	@Column(name = "date")
 	private Date date;
 	
-	@Column(name = "content")
+	@Column(columnDefinition = "TEXT", name = "content")
 	private String content;
 	
 	@OneToMany(mappedBy = "post")
