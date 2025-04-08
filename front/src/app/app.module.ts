@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,6 +28,8 @@ import { SharedModule } from './shared/shared.module';
 import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
 import { FeedComponent } from './features/articles/components/feed/feed.component';
 import { ArticleDetailsComponent } from './features/articles/components/article-details/article-details.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
+import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 const materialModules = [
   MatButtonModule,
@@ -36,12 +39,13 @@ const materialModules = [
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatSidenavModule,
   MatSnackBarModule,
   MatSelectModule
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent, ArticleDetailsComponent],
+  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent, ArticleDetailsComponent, MainLayoutComponent, AuthLayoutComponent],
   imports: [
     BrowserModule,
     FormsModule,

@@ -22,9 +22,20 @@ h1 {
 .button-group {
   display: flex;
   gap: 24px;
-}
 
-.button-group button {
-  font-size: 1.1rem;
-  padding: 12px 28px;
+  button {
+    font-size: 1.1rem;
+    padding: 12px 28px;
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    button {
+      width: 100%;
+      max-width: 300px;
+    }
+  }
 }

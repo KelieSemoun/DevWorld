@@ -1,16 +1,19 @@
 <header class="app-header">
-    <img src="/assets/logo_p6.png" alt="Logo" class="logo" />
-  
-    <ng-container *ngIf="!isLogoOnly()">
-      <nav class="nav-links">
-        <button mat-button color="warn" (click)="logout()">Se déconnecter</button>
-        <a mat-button routerLink="/articles" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Articles</a>
-        <a mat-button routerLink="/topics" routerLinkActive="active-link">Thèmes</a>
-        <button mat-icon-button routerLink="/me" routerLinkActive="active-link">
-          <mat-icon>account_circle</mat-icon>
-        </button>
-      </nav>
-    </ng-container>
-  </header>
-  
-  
+  <!-- Logo (always shown on PC, shown on mobile only if not on auth page) -->
+  <img src="/assets/logo_p6.png" alt="Logo" class="logo" />
+
+  <!-- PC nav links (hidden on auth pages and on mobile) -->
+  <nav class="nav-links" *ngIf="!isMobile && !isAuthPage()">
+    <button class="logout" (click)="logout()">Se déconnecter</button>
+    <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
+    <a routerLink="/topics" routerLinkActive="active-link">Thèmes</a>
+    <a routerLink="/me" routerLinkActive="active-link">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </nav>
+
+  <!-- Mobile drawer toggle button (hidden on auth pages and PC) -->
+  <button mat-icon-button class="menu-toggle" (click)="menuClick.emit()" *ngIf="isMobile">
+    <mat-icon>menu</mat-icon>
+  </button>
+</header>

@@ -28,7 +28,6 @@ export class ArticleDetailsComponent implements OnInit {
     const articleId = +this.route.snapshot.paramMap.get('id')!;
     this.articlesService.getById(articleId).subscribe(article => {
       this.article = article;
-      console.log(this.article);
     });
 
     this.articlesService.getComments(articleId).subscribe(comments => {
