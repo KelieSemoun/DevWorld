@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatListModule } from '@angular/material/list';
-import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,36 +13,27 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { ListComponent } from './features/topics/components/list/list.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AppHeaderComponent } from './core/compnents/app-header/app-header.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { MeComponent } from './features/auth/components/me/me.component';
 import { SharedModule } from './shared/shared.module';
-import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
-import { FeedComponent } from './features/articles/components/feed/feed.component';
-import { ArticleDetailsComponent } from './features/articles/components/article-details/article-details.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 const materialModules = [
   MatButtonModule,
-  MatCardModule,
-  MatCheckboxModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
   MatSidenavModule,
-  MatSnackBarModule,
-  MatSelectModule
+  MatSnackBarModule
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ListComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MeComponent, CreateArticleComponent, FeedComponent, ArticleDetailsComponent, MainLayoutComponent, AuthLayoutComponent],
+  declarations: [AppComponent, HomeComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MainLayoutComponent, AuthLayoutComponent],
   imports: [
     BrowserModule,
     FormsModule,

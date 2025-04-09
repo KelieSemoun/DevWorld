@@ -6,9 +6,6 @@ import { ListComponent } from './features/topics/components/list/list.component'
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MeComponent } from './features/auth/components/me/me.component';
-import { CreateArticleComponent } from './features/articles/components/create-article/create-article.component';
-import { FeedComponent } from './features/articles/components/feed/feed.component';
-import { ArticleDetailsComponent } from './features/articles/components/article-details/article-details.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
@@ -19,31 +16,19 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'articles',
-        component: FeedComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'articles/create',
-        component: CreateArticleComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'articles/:id',
-        component: ArticleDetailsComponent,
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./features/articles/articles.module').then(m => m.ArticlesModule)
       },
       {
         path: 'topics',
-        component: ListComponent,
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./features/topics/topics.module').then(m => m.TopicsModule)
       },
       {
         path: 'me',
-        component: MeComponent,
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./features/auth/components/me/me.module').then(m => m.MeModule)
       }
     ]
   },
@@ -55,6 +40,8 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent }
     ]
   },
+  { path: 'articles', loadChildren: () => import('./features/articles/articles.module').then(m => m.ArticlesModule) },
+  { path: 'topics', loadChildren: () => import('./features/topics/topics.module').then(m => m.TopicsModule) },
 
   { path: '**', redirectTo: '' }
 ];
