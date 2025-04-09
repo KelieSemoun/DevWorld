@@ -41,6 +41,6 @@ DB_DATABASE_NAME=[YOUR DATABASE NAME]
 
 Installez les dépendances avec `mvn clean install` puis démarrez le backend avec `mvn spring-boot:run`
 
-Une fois que vous avez démarrer le serveur. Toutes les tables et les colonnes de votre base de données seront générés.
+Une fois que vous avez démarré le serveur. Toutes les tables et les colonnes de votre base de données seront générés.
 
 Vous pouvez populer la liste des thèmes en exécutant le script SQL inclut dans `resources/sql/topics.sql`
