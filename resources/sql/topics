@@ -1,0 +1,11 @@
+INSERT INTO topic (title, description)
+VALUES 
+  ('Frontend Development', 'All things related to frontend technologies like HTML, CSS, JavaScript, and modern frameworks.'),
+  ('Backend Development', 'Topics focused on backend logic, databases, APIs, and server-side development.'),
+  ('Fullstack Development', 'End-to-end development including both frontend and backend.'),
+  ('Angular', 'Discussions, questions, and tips related to the Angular framework.'),
+  ('React', 'Topics about React.js, its ecosystem, and best practices.'),
+  ('Vue.js', 'Discussion space for Vue.js and its tooling.'),
+  ('Node.js', 'Backend development with Node.js and related libraries.'),
+  ('Spring Boot', 'Enterprise-grade backend development using Spring Boot.'),
+  ('REST APIs', 'Building and consuming RESTful APIs.');
