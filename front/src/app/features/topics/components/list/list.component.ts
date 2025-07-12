@@ -6,9 +6,10 @@ import { UserService } from '../../services/user.service';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss'],
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.scss'],
+    standalone: false
 })
 export class ListComponent implements OnInit {
   public topics$: Observable<Topic[]> = of([]);
