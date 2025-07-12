@@ -1,29 +1,30 @@
 <img src="/assets/logo_p6.png" alt="logo" class="mobile-logo" />
 
 <div class="container">
-    <h2>Inscription</h2>
-  
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
-      <mat-form-field appearance="fill">
-        <mat-label>Nom d'utilisateur</mat-label>
-        <input matInput formControlName="username" required />
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Adresse e-mail</mat-label>
-        <input matInput formControlName="email" required type="email" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Mot de passe</mat-label>
-        <input matInput type="password" formControlName="password"/>
-      </mat-form-field>
+  <h2>Inscription</h2>
 
-      <app-password-checklist [password]="registerForm.get('password')?.value"></app-password-checklist>
-  
-      <button mat-raised-button color="primary" type="submit">S'inscrire</button>
-    </form>
-  
-    <p class="error" *ngIf="error">{{ error }}</p>
-  </div>
-  
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <mat-form-field appearance="fill">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput formControlName="username" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Adresse e-mail</mat-label>
+      <input matInput formControlName="email" required type="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password"/>
+    </mat-form-field>
+
+    <app-password-checklist [password]="registerForm.get('password')?.value"></app-password-checklist>
+
+    <button mat-raised-button color="primary" type="submit">S'inscrire</button>
+  </form>
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+</div>

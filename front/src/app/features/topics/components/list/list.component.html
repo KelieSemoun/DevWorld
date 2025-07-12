@@ -1,20 +1,21 @@
 <div class="topics-wrapper">
   <div class="topics-container">
-    <div class="topic-card" *ngFor="let topic of topics$ | async">
-      <h3 class="topic-title">{{ topic.title }}</h3>
-      <p class="topic-description">{{ topic.description }}</p>
-
-      <button
-        mat-raised-button
-        [disabled]="topic.isSubscribed"
+    @for (topic of topics$ | async; track topic) {
+      <div class="topic-card">
+        <h3 class="topic-title">{{ topic.title }}</h3>
+        <p class="topic-description">{{ topic.description }}</p>
+        <button
+          mat-raised-button
+          [disabled]="topic.isSubscribed"
         [ngClass]="{
           'subscribe-btn': !topic.isSubscribed,
           'subscribed-btn': topic.isSubscribed
         }"
-        (click)="!topic.isSubscribed && subscribeToTopic(topic)"
-      >
-        {{ topic.isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}
-      </button>
-    </div>
+          (click)="!topic.isSubscribed && subscribeToTopic(topic)"
+          >
+          {{ topic.isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}
+        </button>
+      </div>
+    }
   </div>
 </div>

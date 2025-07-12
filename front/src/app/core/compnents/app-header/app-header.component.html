@@ -3,17 +3,21 @@
   <img src="/assets/logo_p6.png" alt="Logo" class="logo" />
 
   <!-- PC nav links (hidden on auth pages and on mobile) -->
-  <nav class="nav-links" *ngIf="!isMobile && !isAuthPage()">
-    <button class="logout" (click)="logout()">Se déconnecter</button>
-    <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
-    <a routerLink="/topics" routerLinkActive="active-link">Thèmes</a>
-    <a routerLink="/me" routerLinkActive="active-link">
-      <mat-icon>account_circle</mat-icon>
-    </a>
-  </nav>
+  @if (!isMobile && !isAuthPage()) {
+    <nav class="nav-links">
+      <button class="logout" (click)="logout()">Se déconnecter</button>
+      <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
+      <a routerLink="/topics" routerLinkActive="active-link">Thèmes</a>
+      <a routerLink="/me" routerLinkActive="active-link">
+        <mat-icon>account_circle</mat-icon>
+      </a>
+    </nav>
+  }
 
   <!-- Mobile drawer toggle button (hidden on auth pages and PC) -->
-  <button mat-icon-button class="menu-toggle" (click)="menuClick.emit()" *ngIf="isMobile">
-    <mat-icon>menu</mat-icon>
-  </button>
+  @if (isMobile) {
+    <button mat-icon-button class="menu-toggle" (click)="menuClick.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
 </header>
