@@ -8,9 +8,10 @@ import { UpdateUserRequest } from '../../interfaces/UpdateUserRequest.interface'
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-me',
-  templateUrl: './me.component.html',
-  styleUrls: ['./me.component.scss']
+    selector: 'app-me',
+    templateUrl: './me.component.html',
+    styleUrls: ['./me.component.scss'],
+    standalone: false
 })
 export class MeComponent implements OnInit {
   profileForm!: FormGroup;

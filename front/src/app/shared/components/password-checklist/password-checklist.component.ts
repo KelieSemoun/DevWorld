@@ -1,9 +1,10 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-password-checklist',
-  templateUrl: './password-checklist.component.html',
-  styleUrls: ['./password-checklist.component.scss']
+    selector: 'app-password-checklist',
+    templateUrl: './password-checklist.component.html',
+    styleUrls: ['./password-checklist.component.scss'],
+    standalone: false
 })
 export class PasswordChecklistComponent implements OnChanges {
   @Input() password: string = '';

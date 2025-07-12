@@ -4,9 +4,10 @@ import { ArticleFeed } from '../../interfaces/ArticleFeed.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-feed',
-  templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss']
+    selector: 'app-feed',
+    templateUrl: './feed.component.html',
+    styleUrls: ['./feed.component.scss'],
+    standalone: false
 })
 export class FeedComponent implements OnInit {
   articles: ArticleFeed[] = [];

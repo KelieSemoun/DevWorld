@@ -7,9 +7,10 @@ import { TopicApiService } from 'src/app/features/topics/services/topic-api.serv
 import { ArticlesService } from '../../services/articles-service.service';
 
 @Component({
-  selector: 'app-create-article',
-  templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.scss']
+    selector: 'app-create-article',
+    templateUrl: './create-article.component.html',
+    styleUrls: ['./create-article.component.scss'],
+    standalone: false
 })
 export class CreateArticleComponent implements OnInit {
 

@@ -7,9 +7,10 @@ import { ArticleComment } from '../../interfaces/ArticleComment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-article-details',
-  templateUrl: './article-details.component.html',
-  styleUrls: ['./article-details.component.scss']
+    selector: 'app-article-details',
+    templateUrl: './article-details.component.html',
+    styleUrls: ['./article-details.component.scss'],
+    standalone: false
 })
 export class ArticleDetailsComponent implements OnInit {
   article?: ArticleDetails;

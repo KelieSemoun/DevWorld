@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 
 @Component({
-  selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
-  styleUrls: ['./main-layout.component.scss']
+    selector: 'app-main-layout',
+    templateUrl: './main-layout.component.html',
+    styleUrls: ['./main-layout.component.scss'],
+    standalone: false
 })
 export class MainLayoutComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
