@@ -1,25 +1,46 @@
-# P6-Full-Stack-reseau-dev
+# Monde De Dev
+
+Bienvenue dans Monde De Dev ! Un réseau social informatif pour développeurs où vous pouvez vous inscrire, vous abonner à des thèmes donnés. Publier et consulter des articles selon les thèmes dont vous vous êtes abonnés. Ainsi que poster des commentaires aux articles !
 
 ## Front
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Ce projet a été généré en [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
 
-Don't forget to install your node_modules before starting (`npm install`).
+Installez les nodes_modules à l'aide de la commande (`npm install`).
 
-### Development server
+Lancez `npm run start` afin de démarrer le frontend. Puis, allez sur `http://localhost:4200/`.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Base de données
 
-### Build
+L'outil de bases de données utilisé ici est [PostgreSQL](https://www.postgresql.org/download/).
+Une fois téléchargé est installé, le serveur PostgreSQL [version] est présent par défaut avec une base de données et un utilisateur nommés "postgres". Vous pouvez utiliser celle-ci ou en créér une autre. Soit en faisant clic droit sur `PostgreSQL [version] -> Create -> Database` soit en executant dans l'outil de requêtes :
+```
+CREATE DATABASE [NOM_BASE_DE_DONNEES]
+    WITH
+    OWNER = [NOM_D'UTILISATEUR]
+    ENCODING = 'UTF8'
+    LOCALE_PROVIDER = 'libc'
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+```
+Note : Ceci est la requête lancé en faisant l'autre manière de créer la base de données PostgreSQL.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Back
 
-### Where to start
+### Liaison à la base de données
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+Allez dans back/src/main/resources et créez le fichier `env.properties` dont vous insérez les trois lignes suivantes :
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+```
+DB_USER=[YOUR DATABASE USERNAME]
+DB_PASSWORD=[YOUR DATABASE PASSWORD]
+DB_DATABASE_NAME=[YOUR DATABASE NAME]
+```
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get rid of it.
+### Démarrer le serveur backend
 
-Good luck!
+Installez les dépendances avec `mvn clean install` puis démarrez le backend avec `mvn spring-boot:run`
+
+Une fois que vous avez démarré le serveur. Toutes les tables et les colonnes de votre base de données seront générés.
+
+Vous pouvez populer la liste des thèmes en exécutant le script SQL inclut dans `resources/sql/topics.sql`
