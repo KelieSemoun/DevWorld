@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { AppHeaderComponent } from './core/compnents/app-header/app-header.component';
@@ -32,23 +32,16 @@ const materialModules = [
   MatSnackBarModule
 ];
 
-@NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MainLayoutComponent, AuthLayoutComponent],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
-    SharedModule,
-    ...materialModules
-  ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent, HomeComponent, LoginComponent, AppHeaderComponent, RegisterComponent, MainLayoutComponent, AuthLayoutComponent],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        SharedModule,
+        ...materialModules], providers: [{
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
