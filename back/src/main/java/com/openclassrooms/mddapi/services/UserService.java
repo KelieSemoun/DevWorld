@@ -51,7 +51,7 @@ public class UserService {
 	public void subscribeToTopic(int id, int topicId) {
 		Optional<User> user = this.userRepository.findById(id);
 		Optional<Topic> topic = this.topicRepository.findById(topicId);
-		if(user.isEmpty() || topic.isEmpty()) {
+		if(!user.isPresent() || !topic.isPresent()) {
 			throw new NotFoundException();
 		}
 		

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/features/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { passwordValidator } from 'src/app/shared/validators/password.validator';
@@ -57,9 +57,5 @@ export class RegisterComponent {
         this.error = err.error?.message || 'Registration failed. Please try again.';
       },
     });
-  }
-
-  goBack(): void {
-    this.router.navigate(['/']);
   }
 }

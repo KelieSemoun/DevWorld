@@ -1,6 +1,11 @@
 <!-- Only show header on PC (≥600px) -->
 <app-header *ngIf="!isMobile"></app-header>
 
+<!-- Back button in both auth pages -->
+<div class="back-button-container">
+    <app-back-button></app-back-button>
+</div>
+
 <!-- Main content -->
 <router-outlet></router-outlet>
 

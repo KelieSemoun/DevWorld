@@ -39,9 +39,9 @@ public class CommentService {
 	        .collect(Collectors.toList());
 	}
 
-	public void addComment(int userId, CommentRequest request) {
-        User user = userRepository.findById(userId).orElseThrow();
-        Article article = articleRepository.findById(request.getArticleId()).orElseThrow();
+	public void addComment(int userId, CommentRequest request) throws Exception {
+        User user = userRepository.findById(userId).orElseThrow(() -> new Exception());
+        Article article = articleRepository.findById(request.getArticleId()).orElseThrow(() -> new Exception());
 
         Comment comment = new Comment();
         comment.setContent(request.getContent());

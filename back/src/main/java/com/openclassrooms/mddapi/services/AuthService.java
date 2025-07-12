@@ -48,7 +48,7 @@ public class AuthService {
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
         Optional<User> userOpt = userRepository.findByEmail(userDetails.getEmail());
-        if (userOpt.isEmpty()) {
+        if (!userOpt.isPresent()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
 
@@ -78,7 +78,7 @@ public class AuthService {
 
     public ResponseEntity<?> updateProfile(UserDetailsImpl userDetails, UpdateUserRequest request) {
         Optional<User> userOpt = userRepository.findByUsername(userDetails.getUsername());
-        if (userOpt.isEmpty()) {
+        if (!userOpt.isPresent()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 

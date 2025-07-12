@@ -35,8 +35,4 @@ export class LoginComponent {
       error: () => this.error = 'Identifiants incorrects'
     });
   }
-
-  goBack(): void {
-    this.router.navigate(['/']);
-  }
 }

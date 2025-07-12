@@ -49,7 +49,7 @@ public class ArticleService {
     
     public List<ArticleFeedDTO> getFeed(String username) {
     	Optional<User> userOpt = userRepository.findByUsername(username);
-        if (userOpt.isEmpty()) {
+        if (!userOpt.isPresent()) {
             throw new NotFoundException();
         }
         

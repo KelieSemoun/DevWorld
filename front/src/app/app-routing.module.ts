@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './features/auth/components/login/login.component';
-import { ListComponent } from './features/topics/components/list/list.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
-import { MeComponent } from './features/auth/components/me/me.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 
@@ -40,9 +38,6 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent }
     ]
   },
-  { path: 'articles', loadChildren: () => import('./features/articles/articles.module').then(m => m.ArticlesModule) },
-  { path: 'topics', loadChildren: () => import('./features/topics/topics.module').then(m => m.TopicsModule) },
-
   { path: '**', redirectTo: '' }
 ];
 

@@ -1,29 +1,27 @@
 <mat-sidenav-container class="main-container">
-    <mat-sidenav #drawer
-                 mode="over"
-                 position="end"
-                 fixedInViewport="true"
-                 class="mobile-drawer">
+  <mat-sidenav #drawer
+                mode="over"
+                position="end"
+                fixedInViewport="true"
+                class="mobile-drawer">
   
-      <div class="drawer-content">
-        <button class="logout" (click)="logout()">Se déconnecter</button>
-        <a routerLink="/articles" routerLinkActive="active-link" (click)="drawer.close()">Articles</a>
-        <a routerLink="/topics" routerLinkActive="active-link" (click)="drawer.close()">Thèmes</a>
+    <div class="drawer-content">
+      <button class="logout" (click)="logout()">Se déconnecter</button>
+      <a routerLink="/articles" routerLinkActive="active-link" (click)="drawer.close()">Articles</a>
+      <a routerLink="/topics" routerLinkActive="active-link" (click)="drawer.close()">Thèmes</a>
   
-        <div class="profile-icon">
-          <button mat-icon-button routerLink="/me" (click)="drawer.close()">
-            <mat-icon>account_circle</mat-icon>
-          </button>
-        </div>
+      <div class="profile-icon">
+        <button mat-icon-button routerLink="/me" (click)="drawer.close()">
+          <mat-icon>account_circle</mat-icon>
+        </button>
       </div>
+    </div>
+  </mat-sidenav>
   
-    </mat-sidenav>
-  
-    <mat-sidenav-content>
-      <app-header (menuClick)="drawer.toggle()"></app-header>
-      <main class="main-content">
-        <router-outlet></router-outlet>
-      </main>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-  
+  <mat-sidenav-content>
+    <app-header (menuClick)="drawer.toggle()"></app-header>
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

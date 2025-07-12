@@ -28,7 +28,7 @@ public class CommentController {
     public ResponseEntity<?> postComment(
         @AuthenticationPrincipal UserDetailsImpl userDetails,
         @RequestBody CommentRequest request
-    ) {
+    ) throws Exception {
         commentService.addComment(userDetails.getId(), request);
         return ResponseEntity.ok(new MessageResponse("Comment posted successfully"));
     }
