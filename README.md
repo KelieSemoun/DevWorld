@@ -4,7 +4,7 @@ Bienvenue dans Monde De Dev ! Un réseau social informatif pour développeurs o�
 
 ## Front
 
-Ce projet a été généré en [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+Ce projet a été généré en [Angular CLI](https://github.com/angular/angular-cli) version 20.1.0.
 
 Installez les nodes_modules à l'aide de la commande (`npm install`).
 
