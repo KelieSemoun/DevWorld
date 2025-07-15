@@ -1,10 +1,12 @@
 <div class="feed-header">
   <button mat-raised-button color="primary" (click)="createArticle()">Créer un article</button>
 
-  <button mat-button (click)="toggleSortOrder()">
-    Trier par :
-    {{ sortOrder === 'desc' ? 'Plus récent' : 'Plus ancien' }}
-  </button>
+  <div class="sort-articles-button">
+    <button mat-button (click)="toggleSortOrder()">
+      Trier par :
+      {{ sortOrder === 'desc' ? '↓' : '↑' }}
+    </button>
+  </div>
 </div>
 
 <div class="feed-grid">

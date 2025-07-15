@@ -1,5 +1,4 @@
 .article-container {
-    padding: 24px;
     max-width: 800px;
     margin: auto;
   }
@@ -17,18 +16,25 @@
   }
   
   .comment {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-top: 12px;
+  
+    .author {
+      font-weight: 500;
+      white-space: nowrap;
+    }
   
     .bubble {
       background: #f3f3f3;
       padding: 12px;
       border-radius: 8px;
-      margin-top: 4px;
     }
   }
   
   .comment-input {
-    width: 100%;
+    width: 90%;
     margin-top: 12px;
   }
   

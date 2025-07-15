@@ -1,7 +1,6 @@
+<app-back-button></app-back-button>
+
 <div class="article-container">
-  <button mat-icon-button (click)="goBack()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
 
   <h2>{{ article?.title }}</h2>
 
@@ -20,9 +19,12 @@
     <div>
       @for (comment of comments; track comment) {
         <div class="comment">
-          <strong>{{ comment.author }}</strong>
-          <p>{{ comment.content }}</p>
-          <small>{{ comment.createdAt | date: 'short' }}</small>
+          <div class="author">
+            <p>{{ comment.author }}</p>
+          </div>
+          <div class="bubble">
+            <p>{{ comment.content }}</p>
+          </div>
         </div>
       }
     </div>
@@ -30,14 +32,11 @@
     <p>Aucun commentaire pour cet article.</p>
   }
 
-
-
-
   <form (ngSubmit)="sendComment()" [formGroup]="commentForm">
     <mat-form-field appearance="outline" class="comment-input">
       <textarea matInput placeholder="Écrivez ici votre commentaire" formControlName="content"></textarea>
     </mat-form-field>
-    <button mat-icon-button type="submit" [disabled]="commentForm.invalid">
+    <button mat-icon-button type="submit" color="primary">
       <mat-icon>send</mat-icon>
     </button>
   </form>

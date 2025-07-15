@@ -23,7 +23,7 @@
 
     <app-password-checklist [password]="profileForm.get('password')?.value"></app-password-checklist>
 
-    <button mat-raised-button color="primary" type="submit">
+    <button matButton="filled" color="primary" type="submit">
       Sauvegarder
     </button>
   </form>
@@ -37,9 +37,11 @@
       <div class="topic-card">
         <h4>{{ topic.title }}</h4>
         <p>{{ topic.description }}</p>
-        <button mat-button color="primary" (click)="unsubscribe(topic.id!)">
-          Se désabonner
-        </button>
+        <div class="button-container">
+          <button matButton="filled" color="primary" (click)="unsubscribe(topic.id!)">
+            Se désabonner
+          </button>
+        </div>
       </div>
     }
   </div>

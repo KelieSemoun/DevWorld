@@ -6,8 +6,8 @@
   @if (!isMobile && !isAuthPage()) {
     <nav class="nav-links">
       <button class="logout" (click)="logout()">Se déconnecter</button>
-      <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
-      <a routerLink="/topics" routerLinkActive="active-link">Thèmes</a>
+      <a routerLink="/articles" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Articles</a>
+      <a routerLink="/topics" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true}">Thèmes</a>
       <a routerLink="/me" routerLinkActive="active-link">
         <mat-icon>account_circle</mat-icon>
       </a>

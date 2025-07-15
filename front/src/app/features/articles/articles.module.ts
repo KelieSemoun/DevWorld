@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { SharedModule } from "src/app/shared/shared.module";
 
 const materialModules = [
   MatButtonModule,
@@ -30,7 +31,8 @@ const materialModules = [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ...materialModules
-  ]
+    ...materialModules,
+    SharedModule
+]
 })
 export class ArticlesModule { }
